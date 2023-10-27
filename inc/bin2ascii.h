@@ -1,15 +1,15 @@
 /*
- * bin2ascii.h
+ *	bin2ascii.h
  *
- *  Created on: 21 Oct 2023
- *      Author: jole
- *
+ * 	Created on: 21 Oct 2023
+ *	Author: jole
  *
  *	Look into C++ bitset in #include <bitset>
  *	https://owlcation.com/stem/C-bitset-with-example
- *	
+ *
+ *
+ *
  */
-
 
 #ifndef __BIN2ASCII_H__
 #define __BIN2ASCII_H__
@@ -42,13 +42,10 @@ class bin2ascii {
 
 	void	readInputFileIntoInputBuffer(void);
 	void	parseInputBuffer(void);
-	void	writeOutputBufferToOutputFile(void);
 
 public:
 	bin2ascii(string _inputFileName, string _outputFileName, bool _verbose, bool _printToScreen);
 	~bin2ascii();
-
-	
 
 };
 
