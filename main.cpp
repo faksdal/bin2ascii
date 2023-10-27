@@ -105,7 +105,7 @@ int main(int argc, char *argv[])
 
 	//cout << "main.cpp: Inputfile: " << inputFileName << ", outputfile: " << outputFileName << endl;
 
-	bin2ascii b2a(inputFileName, outputFileName, verbose);
+	bin2ascii b2a(inputFileName, outputFileName, verbose, printToScreen);
 
 	//cout << "Finished converting " << inputFileName << " to " << outputFileName << endl;
 
