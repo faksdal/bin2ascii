@@ -141,6 +141,9 @@ bin2ascii::bin2ascii(string _inputFileName, string _outputFileName, bool _verbos
 	if(verbose)
 		cout << "Reading file " << inputFileName << ", writing results into " << outputFileName << "..." << endl;
 
+	inputBuffer.clear();
+	outputBuffer.clear();
+
 	readInputFileIntoInputBuffer();
 	parseInputBuffer();
 
