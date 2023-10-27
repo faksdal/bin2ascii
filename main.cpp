@@ -36,13 +36,13 @@ int main(int argc, char *argv[])
 	//
 	//	TODO Add proper switches as the projects goes along
 	//
-	char	*shortOptions = (char*)"i:o:vhs";
+	char	*shortOptions = (char*)"i:o:vsh";
 	struct option	longOptions[] = {
 					{"input-file",	required_argument,	NULL,	'i'},
 					{"output-file",	required_argument,	NULL,	'o'},
-					{"verbose",		no_argument,	NULL,	'v'},
-					{"help",		no_argument,	NULL,	'h'},
-					{"output-to-screen",	no_argument,	NULL,	's'},
+					{"verbose",		no_argument,		NULL,	'v'},
+					{"help",		no_argument,		NULL,	'h'},
+					//{"dow",		no_argument,		NULL,	'd'},
 					{0, 0, 0, 0}
 	};	//End of getopt()-variables
 
@@ -77,15 +77,15 @@ int main(int argc, char *argv[])
 							verbose = true;
 							break;
 						}
+			case 's':	{
+							printToScreen = true;
+							cout << "Printing to screen..." << endl;
+							break;
+						}
 			case 'h':	{
 							//printUsage();
 							cout << "Add some useful information on how to use this software..." << endl;
 							exit(1);
-			case 's':	{
-							//printUsage();
-							cout << "Writing results to screen..." << endl;
-							printToScreen = true;
-							break;
 						}
 			default:	{
 							cout << "Switch default" << endl;
