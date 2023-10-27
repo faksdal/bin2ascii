@@ -90,8 +90,20 @@ void bin2ascii::parseInputBuffer(void)
 	}	// while((totalCount <= (fileSize-2)))
 
 	cout << endl;
-	cout << endl << outputBuffer << endl;
+
+	if(printToScreen)
+		cout << endl << outputBuffer << endl;
 }
+
+
+
+void bin2ascii::writeOutputBufferToOutputFile(void)
+{
+	outputFile.open(outputFileName, std::ifstream::out);
+	outputFile << outputBuffer << endl;
+	inputFile.close();
+}
+
 
 
 
@@ -156,6 +168,8 @@ bin2ascii::bin2ascii(string _inputFileName, string _outputFileName, bool _verbos
 		parseInputBuffer();
 	else
 		return;
+
+	writeOutputBufferToOutputFile();
 
 
 }
