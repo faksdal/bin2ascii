@@ -30,7 +30,7 @@ class bin2ascii {
 
 	string		inputFileName;
 	string		outputFileName;
-	string		inputBuffer;
+	string		inputBuffer, outputBuffer;
 	ifstream	inputFile;
 	ofstream	outputFile;
 
