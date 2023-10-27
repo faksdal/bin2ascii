@@ -70,7 +70,7 @@ void bin2ascii::parseInputBuffer(void)
 
 		//while(inputBuffer[totalCount] == ' ')
 
-		cout << (char)byte;
+		outputBuffer += (char)byte;
 
 		totalCount++;
 		byteCount	= 7;
@@ -131,12 +131,13 @@ void bin2ascii::readInputFileIntoInputBuffer(void)
 
 
 
-bin2ascii::bin2ascii(string _inputFileName, string _outputFileName, bool _verbose)
+bin2ascii::bin2ascii(string _inputFileName, string _outputFileName, bool _verbose, bool _printToScreen)
 {
 	inputFileName	= _inputFileName;
 	outputFileName	= _outputFileName;
 
 	verbose			= _verbose;
+	printToScreen		= _printToScreen;
 
 	if(verbose)
 		cout << "Reading file " << inputFileName << ", writing results into " << outputFileName << "..." << endl;
