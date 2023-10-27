@@ -5,7 +5,7 @@
  *      Author: jole
  *
  *      Driver program for testing bin2ascii conversion
- *
+ *	Test text
  *
  *
  */
