@@ -22,7 +22,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-	bool	verbose = false, inputFileNameSet = false, outputFileNameSet = false;
+	bool	verbose = false, inputFileNameSet = false, outputFileNameSet = false, printToScreen = false;
 	string	inputFileName;
 	string	outputFileName;
 
@@ -36,13 +36,13 @@ int main(int argc, char *argv[])
 	//
 	//	TODO Add proper switches as the projects goes along
 	//
-	char	*shortOptions = (char*)"i:o:vh";
+	char	*shortOptions = (char*)"i:o:vhs";
 	struct option	longOptions[] = {
 					{"input-file",	required_argument,	NULL,	'i'},
 					{"output-file",	required_argument,	NULL,	'o'},
-					{"verbose",		no_argument,		NULL,	'v'},
-					{"help",		no_argument,		NULL,	'h'},
-					//{"dow",		no_argument,		NULL,	'd'},
+					{"verbose",		no_argument,	NULL,	'v'},
+					{"help",		no_argument,	NULL,	'h'},
+					{"output-to-screen",	no_argument,	NULL,	's'},
 					{0, 0, 0, 0}
 	};	//End of getopt()-variables
 
@@ -81,6 +81,11 @@ int main(int argc, char *argv[])
 							//printUsage();
 							cout << "Add some useful information on how to use this software..." << endl;
 							exit(1);
+			case 's':	{
+							//printUsage();
+							cout << "Writing results to screen..." << endl;
+							printToScreen = true;
+							break;
 						}
 			default:	{
 							cout << "Switch default" << endl;
