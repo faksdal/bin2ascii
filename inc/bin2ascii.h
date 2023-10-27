@@ -26,7 +26,7 @@ class bin2ascii {
 
 	int			fileSize;
 
-	bool		verbose;
+	bool		verbose, printToScreen;
 
 	string		inputFileName;
 	string		outputFileName;
@@ -38,7 +38,7 @@ class bin2ascii {
 	void	parseInputBuffer(void);
 
 public:
-	bin2ascii(string _inputFileName, string _outputFileName, bool _verbose);
+	bin2ascii(string _inputFileName, string _outputFileName, bool _verbose, bool _printToScreen);
 	~bin2ascii();
 
 };
