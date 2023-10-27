@@ -3,11 +3,13 @@
  *
  *  Created on: 21 Oct 2023
  *      Author: jole
-
- Look into C++ bitset in #include <bitset>
- 
- 
+ *
+ *
+ *	Look into C++ bitset in #include <bitset>
+ *	https://owlcation.com/stem/C-bitset-with-example
+ *	
  */
+
 
 #ifndef __BIN2ASCII_H__
 #define __BIN2ASCII_H__
