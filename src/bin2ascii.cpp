@@ -5,6 +5,7 @@
  *      Author: jole
  */
 
+#include <chrono>
 #include "bin2ascii.h"
 
 
@@ -12,48 +13,84 @@
 void bin2ascii::parseInputBuffer(void)
 {
 	int		totalCount, byteCount;
-	short	byte = 0;
-	char	character = '';
+	//short	byte = 0;
+	char	character = ' ';
+	//bool	invalidValueEncountered = false;
 
+	//
+	//	initialize totalCount to 0
+	//	keep track of this, comparing it to fileSize to avoid trying to access beyond end of inputString
+	//
 	totalCount	= 0;
+
+	//	we read inputBuffer from left-to-right meaning the first bit we read is the 7th (the leftmost in the byte)
+	//	each succeeding bit is  lower in value
+	//
+	//	|7|6|5|4|3|2|1|0|
+	//
 	byteCount	= 7;
 
 	if(verbose){
-		cout << inputBuffer << endl;
+		cout << "Parsing";
 	}
-	cout << "Sizeof short: " << sizeof(short) << endl;
-	cout << "Sizeof char: " << sizeof(char) << endl;
-
-	//	TODO: rewrite the parsing routine
-
 
 	/*
-	while(totalCount <= (fileSize-2)){
+	 *
+	 *	TODO  rewrite the parsing routine
+	 *
+	 *	What I want from the parse:
+	 *		- if the read value is 1, set the corresponding bit
+	 *		- else clear the corresponding bit
+	 *		- keep track of how many bits read
+	 *		- keep track of the total count so we don't go beyond end of inputBuffer
+	 *		- if we encounter other values than 0's and 1's, skip to the next
+	 *
+	 */
 
-		while((inputBuffer[totalCount] != ' ') && (totalCount <= (fileSize-2))){
 
-			//cout << "inputBuffer[totalCount] " << inputBuffer[totalCount] << endl;
+	//
+	//	let's start with a loop...
+	//
+	while((totalCount <= (fileSize-2))){
 
-			inputBuffer[totalCount] == '1' ? setBit(byte, byteCount) : clearBit(byte, byteCount);
+		switch(inputBuffer[totalCount]){
+			case '0':	{
+							clearBit(character, byteCount);
+							totalCount++;
+							byteCount--;
+							//cout << "clearBit" << endl;
+							break;
+						}
+			case '1':	{
+							setBit(character, byteCount);
+							totalCount++;
+							byteCount--;
+							//cout << "setBit" << endl;
+							break;
+						}
+			default:	{
+							totalCount++;
+							//cout << "default" << endl;
+							break;
+						}
+		}	// switch(inputBuffer[totalCount])
 
-			totalCount++;
-			byteCount--;
-			if(byteCount < 0)
-				break;
+		if(verbose){
+			cout << ".";
+
 		}
 
-		//cout << (char)byte;
-		outputBuffer += (char)byte;
 
-		totalCount++;
-		byteCount	= 7;
-		byte = 0;
-	}
-	*/
+		if(byteCount < 0){
+			outputBuffer += character;
+			byteCount = 7;
+		}
 
 
+	}	// while((totalCount <= (fileSize-2)))
+
+	cout << endl;
 	cout << endl << outputBuffer << endl;
-
 }
 
 
