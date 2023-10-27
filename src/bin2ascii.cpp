@@ -26,68 +26,23 @@ void bin2ascii::parseInputBuffer(void)
 
 	while(totalCount <= (fileSize-2)){
 
-		//cout << "Inside outer while, at the beginning" << endl;
-
 		while((inputBuffer[totalCount] != ' ') && (totalCount <= (fileSize-2))){
 
-			//cout << "Inside inner while " << endl;
 			//cout << "inputBuffer[totalCount] " << inputBuffer[totalCount] << endl;
-			//cout << "byteCount " << byteCount << endl;
-			//cout << "Byte before shift: " << (char)byte << endl;
-			//getchar();
-			inputBuffer[totalCount] == '1' ? setBit(byte, byteCount) : clearBit(byte, byteCount);
 
-			//cout << "Byte after shift: " << (char)byte;
-			//getchar();
+			inputBuffer[totalCount] == '1' ? setBit(byte, byteCount) : clearBit(byte, byteCount);
 
 			totalCount++;
 			byteCount--;
-			/*
-			cout << "byteCount " << byteCount << endl;
-			//cout << "inputBuffer[totalCount] " << inputBuffer[totalCount] << endl;
-			//cout << "fileSize-2 " << fileSize-2 << endl;
-
-			inputBuffer[totalCount]? setBit(byte, byteCount): clearBit(byte, byteCount);
-			cout << "Byte " << (char)byte << endl;
-
-			//if(totalCount == (fileSize-2))
-			//	break;
-
-			totalCount++;
-			byteCount++;
-			//cout << "Press any key..." << endl;
-			//getchar();
-			*/
-
-			/*
-			cout << "byteCount " << byteCount << endl;
-			cout << "totalCount " << totalCount << endl;
-			cout << "inputBuffer[totalCount] " << inputBuffer[totalCount] << endl;
-			byteCount++;
-
-			*/
 		}
 
-		//while(inputBuffer[totalCount] == ' ')
-
-		outputBuffer += (char)byte;
+		cout << (char)byte;
 
 		totalCount++;
 		byteCount	= 7;
-		//cout << "Inside outer while, at the end" << endl;
-		//cout << "Byte after shift: " << byte << endl;
-
 		byte = 0;
-
-
-
-		/*
-		cout << "Byte " << byte << endl;
-		byteCount = 0;
-		byte = 0;
-
-		*/
 	}
+
 	cout << endl;
 
 }
@@ -105,7 +60,6 @@ void bin2ascii::readInputFileIntoInputBuffer(void)
 	// return fp to beginning of file
 	inputFile.seekg(0, ios::beg);
 
-	inputBuffer.clear();
 	inputBuffer += inputFile.get();
 	//cout << "InputBuffer: " << inputBuffer << endl;
 
@@ -115,10 +69,6 @@ void bin2ascii::readInputFileIntoInputBuffer(void)
 	}
 	inputFile.close();
 
-	for(int i = 0; i <= fileSize-2; i++)
-		//cout << "InputBuffer[" << i << "]: " << inputBuffer[i] << endl;
-
-	//cout << "InputBuffer: " << inputBuffer << endl;
 	if(verbose){
 		cout << "Filesize " << fileSize << " bytes" << endl;
 		//cout << "inputBuffer " << inputBuffer << endl;
@@ -137,13 +87,13 @@ bin2ascii::bin2ascii(string _inputFileName, string _outputFileName, bool _verbos
 	outputFileName	= _outputFileName;
 
 	verbose			= _verbose;
-	printToScreen		= _printToScreen;
-
-	if(verbose)
-		cout << "Reading file " << inputFileName << ", writing results into " << outputFileName << "..." << endl;
+	printToScreen	= _printToScreen;
 
 	inputBuffer.clear();
 	outputBuffer.clear();
+
+	if(verbose)
+		cout << "Reading file " << inputFileName << ", writing results into " << outputFileName << "..." << endl;
 
 	readInputFileIntoInputBuffer();
 	parseInputBuffer();
