@@ -32,7 +32,7 @@ class bin2ascii {
 
 	int			fileSize;
 
-	bool		verbose, printToScreen;
+	bool		verbose, printToScreen, fileExist;
 
 	string		inputFileName;
 	string		outputFileName;
@@ -50,3 +50,6 @@ public:
 };
 
 #endif /* __BIN2ASCII_H__ */
+
+
+

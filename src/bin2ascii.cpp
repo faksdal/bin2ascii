@@ -13,17 +13,21 @@ void bin2ascii::parseInputBuffer(void)
 {
 	int		totalCount, byteCount;
 	short	byte = 0;
+	char	character = '';
 
 	totalCount	= 0;
 	byteCount	= 7;
 
 	if(verbose){
-		cout << "Parsing input buffer..." << endl;
-
-		cout << "fileSize " << fileSize << endl;
-		cout << "inputBuffer " << inputBuffer << endl;
+		cout << inputBuffer << endl;
 	}
+	cout << "Sizeof short: " << sizeof(short) << endl;
+	cout << "Sizeof char: " << sizeof(char) << endl;
 
+	//	TODO: rewrite the parsing routine
+
+
+	/*
 	while(totalCount <= (fileSize-2)){
 
 		while((inputBuffer[totalCount] != ' ') && (totalCount <= (fileSize-2))){
@@ -34,16 +38,21 @@ void bin2ascii::parseInputBuffer(void)
 
 			totalCount++;
 			byteCount--;
+			if(byteCount < 0)
+				break;
 		}
 
-		cout << (char)byte;
+		//cout << (char)byte;
+		outputBuffer += (char)byte;
 
 		totalCount++;
 		byteCount	= 7;
 		byte = 0;
 	}
+	*/
 
-	cout << endl;
+
+	cout << endl << outputBuffer << endl;
 
 }
 
@@ -52,6 +61,12 @@ void bin2ascii::parseInputBuffer(void)
 void bin2ascii::readInputFileIntoInputBuffer(void)
 {
 	inputFile.open(inputFileName, std::ifstream::in);
+
+	if(inputFile.fail()){
+		cout << "Inputfile " << inputFileName << " does not exist!" << endl;
+		fileExist = false;
+		return;
+	}
 
 	// seek to end of file to get the size
 	inputFile.seekg(0, ios::end);
@@ -83,6 +98,8 @@ void bin2ascii::readInputFileIntoInputBuffer(void)
 
 bin2ascii::bin2ascii(string _inputFileName, string _outputFileName, bool _verbose, bool _printToScreen)
 {
+	fileExist		= true;
+
 	inputFileName	= _inputFileName;
 	outputFileName	= _outputFileName;
 
@@ -95,8 +112,13 @@ bin2ascii::bin2ascii(string _inputFileName, string _outputFileName, bool _verbos
 	if(verbose)
 		cout << "Reading file " << inputFileName << ", writing results into " << outputFileName << "..." << endl;
 
+
 	readInputFileIntoInputBuffer();
-	parseInputBuffer();
+
+	if(fileExist)
+		parseInputBuffer();
+	else
+		return;
 
 
 }
